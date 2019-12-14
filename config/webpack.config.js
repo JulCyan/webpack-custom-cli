@@ -1,7 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {
-  CleanWebpackPlugin
+  CleanWebpackPlugin,
 } = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const base = {
@@ -24,7 +24,7 @@ module.exports = {
     // 打包自动删除构建结果
     new CleanWebpackPlugin({
       // 排除文件 详见 https://github.com/johnagan/clean-webpack-plugin
-      cleanOnceBeforeBuildPatterns: ['**/*', '!file-name*']
+      cleanOnceBeforeBuildPatterns: ['**/*', '!file-name*'],
     }),
     // 复制资源到构建目录
     new CopyWebpackPlugin([{
@@ -33,7 +33,9 @@ module.exports = {
       transformPath(targetPath) {
         return targetPath.replace('public', '')
       },
-    }])
+      // 忽略
+      ignore: ['*.html']
+    }]),
   ],
   module: {
     // loaders

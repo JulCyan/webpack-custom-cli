@@ -1,3 +1,4 @@
-export const Throttle = (target, name, description) {
+export const Throttle = (target, name, description) => {
     console.log(name);
 }
+export const name = '3333'

@@ -1,17 +1,22 @@
+const merge = require('webpack-merge')
 const config = require('./webpack.config')
-module.exports = {
-    ...config,
-    mode: 'development',
-    // module: {
-    //     rules: [
-    //         ...config.module.rules,
-
-    //         {
-    //             test: /\.(htm|html)$/i,
-    //             loader: 'html-withimg-loader'
-    //         }
-    //     ],
-    // },
-    // 源码映射
-    devtool: 'cheap-module-source-map',
-}
+const { DefinePlugin } = require('webpack')
+module.exports = merge(config, {
+  mode: 'development',
+  module: {
+    rules: [{
+      test: /\.(htm|html)$/,
+      loader: 'html-withimg-loader'
+    }],
+  },
+  plugins: [
+    // 环境变量
+    new DefinePlugin({
+      ENV: {
+        API_URL: '"xxxxxx"'
+      }
+    })
+  ],
+  // 源码映射
+  devtool: 'cheap-module-source-map',
+})
