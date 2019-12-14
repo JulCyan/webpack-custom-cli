@@ -1,5 +1,10 @@
-const baseConfig = require('./webpack.base')
+const config = require('./webpack.base')
+const { BannerPlugin } = require('webpack')
 module.exports = {
-    ...baseConfig,
-    mode: 'production'
+    ...config,
+    mode: 'production',
+    plugins: [
+        new BannerPlugin('Now you using the webpack\'s configs is cyan\'s')
+    ],
+    devtool: 'none',
 }
