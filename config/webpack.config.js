@@ -8,6 +8,7 @@ const base = {
   path: path.join(__dirname, '..')
 }
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 // const lastStyleLoader = MiniCssExtractPlugin.loader
 const lastStyleLoader = 'style-loader'
 module.exports = {
@@ -42,7 +43,8 @@ module.exports = {
     // 抽离 css 代码
     // new MiniCssExtractPlugin({
     //   filename: '[name].css'
-    // })
+    // }),
+    new VueLoaderPlugin()
   ],
   module: {
     // loaders
@@ -95,6 +97,11 @@ module.exports = {
         // 排除目录
         exclude: /node_modules/,
       },
+      // vue
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
+      }
     ]
   },
   // optimization: {
@@ -103,4 +110,12 @@ module.exports = {
   //     chunks: 'all'
   //   }
   // },
+  resolve: {
+    // 自动补全的扩展名
+    extensions: ['.ts', '.js', '.vue', '.json'],
+    // 默认路径代理
+    alias: {
+      '@': path.resolve('src'),
+    }
+  },
 }
