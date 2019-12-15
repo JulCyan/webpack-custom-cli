@@ -7,6 +7,9 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const base = {
   path: path.join(__dirname, '..')
 }
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const lastStyleLoader = MiniCssExtractPlugin.loader
+const lastStyleLoader = 'style-loader'
 module.exports = {
   // entry 相对位置是 config 运行时目录
   entry: './src/main.js',
@@ -36,6 +39,10 @@ module.exports = {
       // 忽略
       ignore: ['*.html']
     }]),
+    // 抽离 css 代码
+    // new MiniCssExtractPlugin({
+    //   filename: '[name].css'
+    // })
   ],
   module: {
     // loaders
@@ -44,19 +51,20 @@ module.exports = {
       {
         test: /.css$/,
         use: [
-          'style-loader',
-          'css-loader'
+          lastStyleLoader,
+          'css-loader',
+          'postcss-loader'
         ],
       },
       // scss
       {
         test: /\.s(a|c)ss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        use: [lastStyleLoader, 'css-loader', 'postcss-loader', 'sass-loader']
       },
       // less
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader']
+        use: [lastStyleLoader, 'css-loader', 'postcss-loader', 'less-loader']
       },
       // images
       {
@@ -88,5 +96,11 @@ module.exports = {
         exclude: /node_modules/,
       },
     ]
-  }
+  },
+  // optimization: {
+  //   splitChunks: {
+  //     // 公共包抽取
+  //     chunks: 'all'
+  //   }
+  // },
 }
