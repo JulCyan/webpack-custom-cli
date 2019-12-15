@@ -7,14 +7,13 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:vue/recommended',
-    //  '@vue/typescript'
   ],
   rules: {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     //  结尾不允许有分号
     semi: [2, 'never'],
-    // error; 一个缩进必须用四个空格替代, switch语句里面的case 2个空格
+    // error; 一个缩进必须用2个空格替代, switch语句里面的case 2个空格
     indent: [1, 2, {
       SwitchCase: 2
     }],
@@ -99,6 +98,6 @@ module.exports = {
     'no-eval': 2
   },
   parserOptions: {
-    // parser: '@typescript-eslint/parser'
+    parser: '@typescript-eslint/parser'
   }
 }

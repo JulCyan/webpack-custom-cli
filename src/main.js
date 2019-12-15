@@ -7,6 +7,7 @@ import router from './plugins/router'
 import store from './plugins/store'
 import VueRouter from 'vue-router'
 import plugins from './plugins'
+import { Test } from './configs/const'
 Vue.use(VueRouter)
 Vue.use(plugins)
 new Vue({
@@ -14,3 +15,6 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+const test = new Test()
+console.log(test.getName())

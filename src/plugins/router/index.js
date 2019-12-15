@@ -1,5 +1,7 @@
 import VueRouter from 'vue-router'
 import Index from '@/views/Home/index.vue'
+import About from '@/views/About/index.vue'
+import TSTest from '@/views/TSTest/index.vue'
 const router = new VueRouter({
   routes: [{
     path: '/',
@@ -8,10 +10,13 @@ const router = new VueRouter({
   },
   {
     path: '/about',
-    component: () => require('@/views/About/index.vue')
+    component: About
+  },
+  {
+    path: '/test',
+    component: TSTest
   }
   ]
-
 })
 
 export default router

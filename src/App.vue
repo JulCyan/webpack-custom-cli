@@ -33,7 +33,7 @@ export default {
   },
   created() {
     console.log('app 构建了')
-    this.$axios('getUserInfo')
+    // this.$axios('getUserInfo')
   },
   methods: {
     add () {

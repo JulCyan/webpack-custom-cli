@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let instance = axios.create({
+const instance = axios.create({
   baseURL: 'api/',
   timeout: 10 * 1000,
   headers: {
