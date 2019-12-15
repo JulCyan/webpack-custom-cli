@@ -3,11 +3,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {
   CleanWebpackPlugin,
 } = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const base = {
   path: path.join(__dirname, '..')
 }
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 // const lastStyleLoader = MiniCssExtractPlugin.loader
 const lastStyleLoader = 'style-loader'
@@ -87,6 +87,17 @@ module.exports = {
       {
         test: /\.(woff|woff2|eot|svg|ttf)$/,
         use: 'url-loader'
+      },
+      // js eslint
+      {
+        test: /\.js$/,
+        loader: 'eslint-loader',
+        enforce: 'pre',
+        // include: [path.resolve(__dirname, 'src')], // 指定检查的目录
+        exclude: /node_modules/,
+        options: { // 这里的配置项参数将会被传递到 eslint 的 CLIEngine 
+          formatter: require('eslint-tap') // 指定错误报告的格式规范
+        }
       },
       // js
       {

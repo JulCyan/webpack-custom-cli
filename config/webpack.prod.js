@@ -1,7 +1,7 @@
 const merge = require('webpack-merge')
 const config = require('./webpack.config')
-const TerserJSPlugin = require('terser-webpack-plugin')
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+// const TerserJSPlugin = require('terser-webpack-plugin')
+// const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const {
   DefinePlugin
 } = require('webpack')
@@ -18,9 +18,6 @@ module.exports = merge(config, {
         API_URL: '"yyyyyy"'
       }
     }),
-    // new MiniCssExtractPlugin({
-    //   filename: '[name][hash:8].css'
-    // })
   ],
   devtool: 'none',
   // optimization: {
